@@ -17,6 +17,10 @@ class TournamentService:
             print("Can not add player. Tournament is null")
         else:
             self.tournament.register_player(player)
+<<<<<<< HEAD
+=======
+
+>>>>>>> Tried to fix rebase issues
 
 
     def set_game(self, game):
