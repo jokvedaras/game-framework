@@ -1,4 +1,4 @@
-__author__ = 'Pat McClernan and Dan Weggman'
+__author__ = 'Pat McClernan and Dan Wegmann'
 import Player
 import Message
 # input
