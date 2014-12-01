@@ -53,7 +53,7 @@ class ScoreKeeper:
             pass
 
 
-    def check_player(self, item):
+    def check_player(self, player):
         """
         checks each player in leaderboard to see if they are
         already counted for.
@@ -63,8 +63,7 @@ class ScoreKeeper:
         """
         check = True
         for i in range(len(self.leaderboard)):
-            #if i.get_player() == item.get_player():
-            if self.leaderboard[i].get_player() == item.get_player():
+            if self.leaderboard[i].get_player() == player.get_player():
                 check = False
             else:
                 check = True
