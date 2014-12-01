@@ -17,40 +17,32 @@ class ScoreKeeper:
         self.matchhistory = []
 
 
-    def update_tournament(self, p1, p2, w, s1, s2):
+    def update_tournament(self, players, w, scores):
         """
-        updates the leaderboard and matchhistory lists
-        :param p1: player1
-        :param p2: player2
-        :param w: winner of match
-        :param s1: score of player1
-        :param s2: score of player2
-        :return:
 
+        :param players: list of players
+        :param w: winner of match
+        :param scores: list of scores
         """
         #creates the history item based on the match details
-        historyitem = ScoreKeeperHistoryItem.ScoreKeeperHistoryItem(p1, p2, w, s1, s2)
+        historyitem = ScoreKeeperHistoryItem.ScoreKeeperHistoryItem(players, w, scores)
 
         #adds the history item to matchhistory[]
         self.matchhistory.append(historyitem)
 
         #creates the listitems for both players and checks to see if they are on the leaderboard
         #if not present on the leader board, they are appended
-        listitema = ScoreKeeperListItem.ScoreKeeperListItem(p1, s1)
-        listitemb = ScoreKeeperListItem.ScoreKeeperListItem(p2, s2)
-        if self.check_player(listitema):
-            self.leaderboard.append(listitema)
-        if self.check_player(listitemb):
-            self.leaderboard.append(listitemb)
+        for i in range(len(players)):
+            listitem = ScoreKeeperListItem.ScoreKeeperListItem(players[i])
+            if self.check_player(listitem):
+                self.leaderboard.append(listitem)
 
-        #checks the winner and awards a point to that player
-        if s1 > s2:
-            self.make_winner(p1)
-        elif s2 > s1:
-            self.make_winner(p2)
-        #in the event of a tie, no points awarded
-        else:
-            pass
+            #checks the winner and awards a point to that player
+            if(players[i] is w):
+                players[i].update_score()
+            #in the event of a tie, no points awarded
+            else:
+                pass
 
 
     def check_player(self, item):
