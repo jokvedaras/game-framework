@@ -1,12 +1,11 @@
-__author__ = 'geebzter'
-
+__author__ = 'Collin Day and Joe Kvedaras'
+import random
 # Example of how to implement an RPS player within the framework
 
 import Player
 import Message
 
-
-class RPSPlayerExample(Player.Player):
+class CDJKPlayer(Player.Player):
 
     def __init__(self):
         # Call super class constructor
@@ -37,9 +36,9 @@ class RPSPlayerExample(Player.Player):
             players = msg.get_players()
             # Check if this message is for me and only then proceed
             if (players[0] == self) or (players[1] == self):
-                # In this case, (by convention) the info is a tuple of the moves made and result
-                # e.g. ((1, 0), (1,0)) which means player 1 played paper (1), the player 2 played
-                # rock(0) and the result was that player 1 won (got 1 point) and player 2 lost (got 0 point)
+                # In this case, (by convention) the info is a tuple of the moves made and result e.g. ((1, 0), 1) which
+                # means player 1 played paper (1), the player 2 played rock(0) and the result was that
+                # player 1 won
 
                 moves, result = msg.get_info()
 
@@ -54,45 +53,54 @@ class RPSPlayerExample(Player.Player):
                 self.opponents_moves.append(moves[opponent])
 
 
+
 # An implementation of a simple rps playing strategy
 class RpsPlayingStrategy(object):
 
     @staticmethod
     def play(opponents_moves):
-        # Implements some way of predicting what the opponent might do next
-        # and play accordingly.
-        # For instance, assume he is going to play the move he has played the
-        # least.
+        # We assume other will assume to use either the most played or the
+        #least played move so play the middle one no one would expect that.
+        #also if the numbers are equal it will just pick one at random.
+        #we put random numbers in certain places to throw off others stratigies
 
         # count number of rock, paper and scissors moves made in the past
+        
         count = [0, 0, 0]
 
         for move in opponents_moves:
             count[move] += 1
 
-        if count[0] < count[1]:
-            least = 0
+        if (count[0] > count[1] & count[0] < count[2]) | (count[0] < count[1] & count[0] > count[2]):
+            use = 0
+        elif (count[1] > count[0] & count[1] < count[2]) | (count[1] < count[0] & count[1] > count[2]):
+            use = 1
+
+        elif (count[2] > count[0] & count[2] < count[1]) | (count[2] < count[0] & count[2] > count[1]):
+            use = 2
+
         else:
-            least = 1
+            use = random.randrange(0,3)
 
-        if count[least] > count[2]:
-            least = 2
-
-        # Assuming that opponent's move is going to be the value of least, play to beat it
-        return (least + 1) % 3
+        # Assuming that other will base their moves on either the most used or least used move
+        #ours is bassed off the middle used move
+        return use
 
 # Test driver
-# Run by typing "python3 RpsPlayerExample.py"
+# Run by typing "python3 CDKJPlayer.py"
 
 if __name__ == "__main__":
-    player = RPSPlayerExample()
-    opponent = RPSPlayerExample()
-    players = [opponent, player]
-    fake_moves = (1, 2)
-    fake_result = (0, 1)
+    player = CDJKPlayer()
+    opponent = CDJKPlayer()
+    players = [opponent,player]
+    fakeinfo = ((0,0),0)
+    fakeresult = 1
+    fakemoves = (0,2)
 
     player.notify(Message.Message.get_match_start_message(players))
     player.notify(Message.Message.get_round_start_message(players))
     move = player.play()
-    print("Move played: ", move)
-    player.notify(Message.Message.get_round_end_message(players, fake_moves, fake_result))
+    print ("Move played: ", move)
+    player.notify(Message.Message.get_round_end_message(players,fakemoves,fakeresult))
+
+
