@@ -1,20 +1,33 @@
 __author__ = 'jeffrey creighton & anand patel'
-# Purpose: data structure for tracking tournament leaders
+# Purpose: data structure for tracking tournament leaders and
+# act as a roster of all players
 
 
-class ScorekeeperListItem:
+class ScoreKeeperListItem:
+    """
+    keeps record of each player and their associated
+    number of wins, can access all of the data fields
+    """
     def __init__(self, player):
         self.player = player
         self.score = 0
 
-    #increment this player's score to signify a win
     def update_score(self):
+        """
+        :increment the variable score
+        : to signify a win for the player
+        """
         self.score += 1
 
-    #returns this score
+
     def get_score(self):
+        """
+        :return: number of wins associated with this player
+        """
         return self.score
 
-    #returns this player
     def get_player(self):
+        """
+        :return: the instance of player it is tracking
+        """
         return self.player
