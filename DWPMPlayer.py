@@ -15,7 +15,7 @@ import Message
 #So our strategy is to take the least seen move
 #    and expect it to show up soon
 #   so we will play to beat that move
-class PatAndDansRPSPlayer(Player.Player):
+class DWPMPlayer(Player.Player):
     def __init__(self):
         Player.Player.__init__(self)
         self.past_moves = []
