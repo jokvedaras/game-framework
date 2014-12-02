@@ -4,7 +4,7 @@ __author__ = 'jeffrey creighton & anand patel'
 
 class ScoreKeeperHistoryItem:
 
-    def __init__(self, players, winner): #, scores):
+    def __init__(self, players, winner, scores):
         """
         data structure to maintain a record of all matches
             and their outcomes
@@ -15,4 +15,4 @@ class ScoreKeeperHistoryItem:
         """
         self.players = players
         self.winner = winner
-        #self.scores = scores
+        self.scores = scores

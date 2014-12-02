@@ -17,7 +17,7 @@ class ScoreKeeper:
         self.matchhistory = []
 
 
-    def update_tournament(self, players, w): #, scores):
+    def update_tournament(self, players, w, scores):
         """
 
         :param players: list of players
@@ -25,7 +25,7 @@ class ScoreKeeper:
         :param scores: list of scores
         """
         #creates the history item based on the match details
-        historyitem = ScoreKeeperHistoryItem.ScoreKeeperHistoryItem(players, w) #, scores)
+        historyitem = ScoreKeeperHistoryItem.ScoreKeeperHistoryItem(players, w, scores)
 
         #adds the history item to matchhistory[]
         self.matchhistory.append(historyitem)
