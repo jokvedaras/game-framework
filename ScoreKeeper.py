@@ -4,7 +4,7 @@ import ScoreKeeperHistoryItem
 import ScoreKeeperListItem
 
 
-class ScoreKeeper:
+class ScoreKeeper(object):
     """
     Consisting of two lists, will track all players and their scores
         as well as each match and their outcomes.
@@ -38,7 +38,7 @@ class ScoreKeeper:
 
             #checks the winner and awards a point to that player
             if(players[i] is winner):
-                players[i].update_score()
+                self.make_winner(players[i])
             #in the event of a tie, no points awarded
             else:
                 pass
@@ -89,8 +89,8 @@ class ScoreKeeper:
         :return: Top three scoring players of the Tournament
         """
         player_list =[]
-        player_list.append(self.leaderboard[0])
-        player_list.append(self.leaderboard[1])
-        player_list.append(self.leaderboard[2])
+        player_list.append(self.leaderboard[0].get_player().get_name())
+        player_list.append(self.leaderboard[1].get_player().get_name())
+        player_list.append(self.leaderboard[2].get_player().get_name())
 
         return player_list

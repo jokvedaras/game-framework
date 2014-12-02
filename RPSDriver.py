@@ -12,12 +12,13 @@ from MMJRPlayer import *
 from PBATPlayer import *
 from RPSPlayerSwitcharoo import *
 from SHJPPlayer import *
+from JCAPPlayer import *
 
 
 # Produces a list of players submitted
 def create_players():
-    return [BEPCPlayer(), CDJKPlayer(), PatAndDansRPSPlayer(),MyPlayer(),GSACPlayer(),MMJRPlayer(),PBATPlayer(),
-            RPSPlayerSwitcharoo(), SHJPPlayer()]
+    return [BEPCPlayer(), CDJKPlayer(), DWPMPlayer(),MyPlayer(),GSACPlayer(),MMJRPlayer(),PBATPlayer(),
+            RPSPlayerSwitcharoo(), SHJPPlayer(), JCAPPlayer()]
 
 # Create a tournament service that will set the tournament accordingly, register the players to the tournament
 # and run the instance of Tournament

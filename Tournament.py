@@ -16,7 +16,7 @@ class Tournament(Observable.Observable):
         self.playerList = []
         self.game = None
         self.display = None
-        self.scorekeeper = ScoreKeeper.ScoreKeeper
+        self.scorekeeper = ScoreKeeper.ScoreKeeper()
 
     def attach_display(self, display):
         self.display = display
@@ -108,7 +108,7 @@ class Tournament(Observable.Observable):
         if(result[0] == result[1]): #if tie, no winner awarded
             winner = None
         else:
-            winner = players[players.index(max(result))]
+            winner = players[result.index(max(result))]
 
         self.scorekeeper.update_tournament(players, winner, result)
         message = Message.Message.get_round_end_message(players, moves, result)
