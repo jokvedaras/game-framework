@@ -17,15 +17,14 @@ class ScoreKeeper:
         self.matchhistory = []
 
 
-    def update_tournament(self, players, w, scores):
+    def update_tournament(self, players, winner, scores):
         """
-
         :param players: list of players
-        :param w: winner of match
+        :param winner: winner of match
         :param scores: list of scores
         """
         #creates the history item based on the match details
-        historyitem = ScoreKeeperHistoryItem.ScoreKeeperHistoryItem(players, w, scores)
+        historyitem = ScoreKeeperHistoryItem.ScoreKeeperHistoryItem(players, winner, scores)
 
         #adds the history item to matchhistory[]
         self.matchhistory.append(historyitem)
@@ -38,7 +37,7 @@ class ScoreKeeper:
                 self.leaderboard.append(listitem)
 
             #checks the winner and awards a point to that player
-            if(players[i] is w):
+            if(players[i] is winner):
                 players[i].update_score()
             #in the event of a tie, no points awarded
             else:
@@ -49,7 +48,7 @@ class ScoreKeeper:
         """
         checks each player in leaderboard to see if they are
         already counted for.
-        :param item -- item to check against known players
+        :param player -- item to check against known players
         :return:true if player is already on the list, false otherwise
 
         """
@@ -84,3 +83,14 @@ class ScoreKeeper:
         :return: the match history
         """
         return self.matchhistory
+
+    def get_final_three(self):
+        """
+        :return: Top three scoring players of the Tournament
+        """
+        player_list =[]
+        player_list.append(self.leaderboard[0])
+        player_list.append(self.leaderboard[1])
+        player_list.append(self.leaderboard[2])
+
+        return player_list
