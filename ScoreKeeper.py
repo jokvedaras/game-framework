@@ -31,17 +31,12 @@ class ScoreKeeper(object):
 
         #creates the listitems for both players and checks to see if they are on the leaderboard
         #if not present on the leader board, they are appended
-        for i in range(len(players)):
-            listitem = ScoreKeeperListItem.ScoreKeeperListItem(players[i])
-            if self.check_player(listitem):
+        for player in players:
+            listitem = ScoreKeeperListItem.ScoreKeeperListItem(player)
+            if not self.check_player(listitem):
                 self.leaderboard.append(listitem)
 
-            #checks the winner and awards a point to that player
-            if(players[i] is winner):
-                self.make_winner(players[i])
-            #in the event of a tie, no points awarded
-            else:
-                pass
+        self.make_winner(winner)
 
 
     def check_player(self, player):
@@ -52,25 +47,27 @@ class ScoreKeeper(object):
         :return:true if player is already on the list, false otherwise
 
         """
-        check = True
-        for i in range(len(self.leaderboard)):
-            if self.leaderboard[i].get_player() == player.get_player():
-                check = False
-            else:
+        check = False
+
+        for p in self.leaderboard:
+            if p.get_player() == player.get_player():
                 check = True
+
         return check
 
 
-    def make_winner(self, player):
+    def make_winner(self, winner):
         """
         finds the reference to the player and increments his score
-        :param player who won match
+        :param winner who won match
         """
+
         for i in range(len(self.leaderboard)):
             #if player is i.get_player():
             #   i.update_score()
-            if player is self.leaderboard[i].get_player():
+            if winner is self.leaderboard[i].get_player():
                 self.leaderboard[i].update_score()
+
 
     def get_leaderboard(self):
         """
@@ -94,3 +91,47 @@ class ScoreKeeper(object):
         player_list.append(self.leaderboard[2].get_player().get_name())
 
         return player_list
+
+
+    def print_leaderboard(self):
+
+        player_list = []
+
+        for player in self.leaderboard:
+            player_list.append(player.get_player().get_name())
+
+        print(len(self.matchhistory))
+        print(len(self.leaderboard))
+        return player_list
+
+    def print_scores(self):
+
+        score_list = []
+
+        for player in self.leaderboard:
+            score_list.append(player.get_score())
+
+        return score_list
+
+
+    def print_final_stats(self):
+        player_list = []
+        score_list = []
+        for player in self.leaderboard:
+            player_list.append(player.get_player().get_name())
+            score_list.append(player.get_score())
+        print("Total number of matches played:")
+        print(len(self.matchhistory))
+        print("Number of players that participated")
+        print(len(self.leaderboard))
+        print(player_list)
+        print(score_list)
+
+        templeaderboard = player_list.copy()
+        tempscores = score_list.copy()
+
+        print("The top three are:")
+        for i in range(0, 3):
+            print(templeaderboard[tempscores.index(max(tempscores))])
+            templeaderboard.remove(templeaderboard[tempscores.index(max(tempscores))])
+            tempscores.remove(tempscores[tempscores.index(max(tempscores))])
