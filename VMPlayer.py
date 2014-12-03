@@ -5,7 +5,7 @@ import Player
 import Message
 
 """Rock paper scissors player"""
-class VPlayer(Player.Player):
+class VMPlayer(Player.Player):
     def __init__(self):
         # Call super class constructor
         Player.Player.__init__(self)
