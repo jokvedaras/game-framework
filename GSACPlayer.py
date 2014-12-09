@@ -10,6 +10,7 @@ class GSACPlayer(Player.Player):
         # Call super class constructor
         Player.Player.__init__(self)
         self.reset()
+        self.name = "Alex and Greg"
 	
     def play(self):
         return RpsPlayingStrategy.play(self.opponents_moves)
