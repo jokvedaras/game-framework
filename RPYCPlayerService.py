@@ -1,3 +1,5 @@
+from Players import CDJKPlayer
+
 __author__ = 'jokvedaras'
 
 """RPYC player class to be run on the client machine to connect to the
@@ -6,7 +8,6 @@ server and play games akin to rock paper scissors"""
 import rpyc
 
 #import your specific files that pertain to the game
-import CDJKPlayer
 
 class RPYCPlayerService(rpyc.Service):
 
@@ -37,7 +38,7 @@ class RPYCPlayerService(rpyc.Service):
 
     def exposed_get_player(self):
         #use the particular player on computer
-        self.player=CDJKPlayer()
+        self.player= CDJKPlayer()
         return
 
     def exposed_start_player_service(self):

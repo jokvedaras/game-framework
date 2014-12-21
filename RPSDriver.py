@@ -3,16 +3,16 @@ __author__ = 'Tony'
 from TournamentService import *
 from RPSGame import *
 from Display import *
-from BEPCPlayer import *
-from CDJKPlayer import *
-from DWPMPlayer import *
-from GRTCPlayer import *
-from GSACPlayer import *
-from MMJRPlayer import *
+from Players.BEPCPlayer import *
+from Players.CDJKPlayer import *
+from Players.DWPMPlayer import *
+from Players.GRTCPlayer import *
+from Players.GSACPlayer import *
+from Players.MMJRPlayer import *
 from PBATPlayer import *
-from VMPlayer import *
-from SHJPPlayer import *
-from JCAPPlayer import *
+from Players.VMPlayer import *
+from Players.SHJPPlayer import *
+from Players.JCAPPlayer import *
 
 
 # Produces a list of players submitted
