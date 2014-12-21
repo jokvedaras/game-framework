@@ -6,7 +6,11 @@ import Message
 
 class JCAPPlayer(Player.Player):
     def __init__(self):
+<<<<<<< HEAD
         self.name = None
+=======
+        self.name = "JCAP"
+>>>>>>> 4102c062cca6b71dea11b276039ad6050f4b31d2
         self.moves = [0, 0, 0]
         self.pre_smart = 3
         self.decrementing = 45

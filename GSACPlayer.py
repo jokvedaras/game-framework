@@ -10,6 +10,10 @@ class GSACPlayer(Player.Player):
         # Call super class constructor
         Player.Player.__init__(self)
         self.reset()
+<<<<<<< HEAD
+=======
+        self.name = "Alex and Greg"
+>>>>>>> 4102c062cca6b71dea11b276039ad6050f4b31d2
 	
     def play(self):
         return RpsPlayingStrategy.play(self.opponents_moves)
@@ -100,4 +104,8 @@ if __name__ == "__main__":
     player.notify(Message.Message.get_round_start_message(players))
     move = player.play()
     print ("Move played: ", move)
+<<<<<<< HEAD
     player.notify(Message.Message.get_round_end_message(players,fakemoves,fakeresult))
+=======
+    player.notify(Message.Message.get_round_end_message(players,fakemoves,fakeresult))
+>>>>>>> 4102c062cca6b71dea11b276039ad6050f4b31d2

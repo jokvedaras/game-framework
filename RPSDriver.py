@@ -10,9 +10,21 @@ from GRTCPlayer import *
 from GSACPlayer import *
 from MMJRPlayer import *
 from PBATPlayer import *
+<<<<<<< HEAD
 from RPSPlayerSwitcharoo import *
 from SHJPPlayer import *
 
+=======
+from VMPlayer import *
+from SHJPPlayer import *
+from JCAPPlayer import *
+
+
+# Produces a list of players submitted
+def create_players():
+    return [BEPCPlayer(), CDJKPlayer(), DWPMPlayer(),MyPlayer(),GSACPlayer(),MMJRPlayer(),PBATPlayer(),
+            VMPlayer(), SHJPPlayer(), JCAPPlayer()]
+>>>>>>> 4102c062cca6b71dea11b276039ad6050f4b31d2
 
 # Produces a list of players submitted
 def create_players():

@@ -5,7 +5,7 @@ import Player
 import Message
 
 """Rock paper scissors player"""
-class RPSPlayerSwitcharoo(Player.Player):
+class VMPlayer(Player.Player):
     def __init__(self):
         # Call super class constructor
         Player.Player.__init__(self)
@@ -16,7 +16,7 @@ class RPSPlayerSwitcharoo(Player.Player):
         self.opponents_moves = []
 
     def get_name(self):
-        return "Switch-a-roo"
+        return "VPlayer"
 
     def notify(self, msg):
 

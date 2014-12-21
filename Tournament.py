@@ -6,6 +6,7 @@
 import Message
 import Observable
 import Display
+import ScoreKeeper
 
 
 class Tournament(Observable.Observable):
@@ -15,6 +16,7 @@ class Tournament(Observable.Observable):
         self.playerList = []
         self.game = None
         self.display = None
+        self.scorekeeper = ScoreKeeper.ScoreKeeper()
 
     def attach_display(self, display):
         self.display = display
@@ -33,6 +35,7 @@ class Tournament(Observable.Observable):
                 break
             self.play_match(match)
         self.end_tournament()
+        self.scorekeeper.print_final_stats()
 
     # get a reference to the next game to be played
     def create_next_match(self):
@@ -101,5 +104,12 @@ class Tournament(Observable.Observable):
 
     # send a message containing the players, moves, and result of the last game
     def end_round(self, players, moves, result):
+        #find winner based on the largest score
+        if(result[0] == result[1]): #if tie, no winner awarded
+            winner = None
+        else:
+            winner = players[result.index(max(result))]
+
+        self.scorekeeper.update_tournament(players, winner, result)
         message = Message.Message.get_round_end_message(players, moves, result)
         self.notify_all(message)
