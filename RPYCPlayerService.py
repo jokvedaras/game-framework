@@ -8,6 +8,7 @@ server and play games akin to rock paper scissors"""
 import rpyc
 
 #import your specific files that pertain to the game
+from Players import CDJKPlayer
 
 class RPYCPlayerService(rpyc.Service):
 
