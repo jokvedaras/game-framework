@@ -1,6 +1,5 @@
-from Players import CDJKPlayer
 
-__author__ = 'jokvedaras'
+__author__ = 'joe kvedaras'
 
 """RPYC player class to be run on the client machine to connect to the
 server and play games akin to rock paper scissors"""
@@ -10,43 +9,26 @@ import rpyc
 #import your specific files that pertain to the game
 from Players import CDJKPlayer
 
-class RPYCPlayerService(rpyc.Service):
-
-    def on_connect(self):
-        """Called when connection is established"""
-        print("Connected to server")
-
-    def on_disconnect(self):
-        """Called when connection is terminated"""
-        print("Disconnected from server")
-
-    def __init__(self):
-        """Will create a player variable which will be none at startup"""
-        self.player = None
-
-    def exposed_get_name(self,player):
-        """Return the name of the player"""
-        return player.get_name()
-
-    def exposed_play(self,player):
-        """Calls player to "play" or make a move"""
-        return player.play()
 
 
-    def exposed_notify(self,message):
-        """Notifies a player with the servers message"""
-        self.player.notify(message)
 
-    def exposed_get_player(self):
-        #use the particular player on computer
-        self.player= CDJKPlayer()
-        return
+class RPYCPlayerService:
 
-    def exposed_start_player_service(self):
-        return None
+    def __init__(self, connection, player):
+        self._player = player
+        self._connection = connection
 
-#Start the local server to communicated with the game server
+
+    def register_player(self):
+        self._connection.register_player(self._player)
+
+
+
 if __name__ == "__main__" :
-    from rpyc.utils.server import ThreadedServer
-    server = ThreadedServer(RPYCPlayerService,port=12345,protocol_config={'allow_public_attrs':True})
-    server.start()
+    #Connect to game server, register player, and play the game.
+    """Connect to server"""
+    ip_address = str(input("Enter IP: "))
+    port_number = int(input("Enter Port Number: "))
+    c = rpyc.connect(ip_address, port_number)
+    player = CDJKPlayer()
+    player_service = RPYCPlayerService(c,player)

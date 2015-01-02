@@ -11,9 +11,11 @@ class GSACPlayer(Player.Player):
         Player.Player.__init__(self)
         self.reset()
         self.name = "Alex and Greg"
+        self.strategy = RpsPlayingStrategy()
+        self.opponents_moves
 	
     def play(self):
-        return RpsPlayingStrategy.play(self.opponents_moves)
+        return self.strategy.play(self.opponents_moves)
 			
     def reset(self):
         self.opponents_moves = []

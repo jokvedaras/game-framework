@@ -1,9 +1,9 @@
 __author__ = 'Greg Richards'
 __author__ = 'Tara Critteden'
 from random import randint
+
 import Player
 import Message
-import RPSPlayerExample
 
 
 class MyPlayer(Player.Player):
@@ -134,7 +134,7 @@ class RpsPlayingStrategy(object):
 # Run by typing "python3 RpsPlayerExample.py"
 
 if __name__ == "__main__":
-    player = RPSPlayerExample()
+    player = MyPlayer()
     opponent = MyPlayer()
     players = [opponent, player]
     fake_moves = (1, 2)

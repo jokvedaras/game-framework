@@ -3,17 +3,17 @@ __date__ = "November 30 2014"
 __version__ = "1.0.1"
 
 #imports
-import Tournament
+from Tournament import *
 
 
-class AllPlayAll(Tournament.Tournament):
+class AllPlayAll(Tournament):
     """ AllPlayAll Tournament Type, every player is in a match with every other player"""
 
     def __init__(self, rounds=5):
         """ Initialize AllPlayAll
         :param rounds the number of rounds per match, 100 by default
         """
-        Tournament.Tournament.__init__(self)
+        Tournament.__init__(self)
         # variables to help us pick players 1 and 2.
         self.p = 0     # player 1 index
         self.q = 1     # player 2 index
