@@ -39,6 +39,10 @@ class RPYCTournamentService(rpyc.Service):
         """Run the current tournament setup"""
         tournament_service.run()
 
+    def exposed_reset(self):
+        """reset the current tournament"""
+        tournament_service.reset()
+
 
 #Start the game server
 if __name__ == "__main__" :

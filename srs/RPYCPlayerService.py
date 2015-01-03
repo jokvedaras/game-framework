@@ -14,21 +14,48 @@ from Display import *
 #Add library path of players
 import sys
 sys.path.append("/Users/jokvedaras/git/game-framework/Players")
-from CDJKPlayer import *
 from BEPCPlayer import *
+from CDJKPlayer import *
 from DWPMPlayer import *
+from GRTCPlayer import *
+from GSACPlayer import *
+from MMJRPlayer import *
+from PBATPlayer import *
+from VMPlayer import *
+from SHJPPlayer import *
+from JCAPPlayer import *
 
 
 class RPYCPlayerService:
 
-    def __init__(self, connection):
-        self._connection = connection
+    def __init__(self, connection_root):
+        self.connection_root = connection_root
 
 
     def register_player(self, player):
         self._connection.root.register_player(player)
 
+    # Produces a list of players submitted
+    def create_players(self):
+        #,GSACPlayer() This player needs to be fixed
+        return [BEPCPlayer(), CDJKPlayer(), DWPMPlayer(),MyPlayer(),MMJRPlayer(),PBATPlayer(),
+            VMPlayer(), SHJPPlayer(), JCAPPlayer()]
 
+
+    def create_player(self, player):
+        """register your specific player"""
+        self.connection_root.register_player(player)
+
+    def register_players(self, player_list):
+        for player in player_list:
+            self.connection_root.register_player(player)
+
+    def set_up_game(self, game, display):
+        self.connection_root.set_game(game)
+        self.connection_root.set_display(display)
+
+    def run(self):
+        self.connection_root.run()
 
 if __name__ == "__main__" :
     #Connect to game server, register player, and play the game.
@@ -36,31 +63,21 @@ if __name__ == "__main__" :
 #    ip_address = str(input("Enter IP: "))
 #    port_number = int(input("Enter Port Number: "))
 #    c = rpyc.connect(ip_address, port_number)
-    c = rpyc.connect("localhost",12345, config = {"allow_public_attrs" : True})
-    player = CDJKPlayer()
-    player2 = BEPCPlayer()
-    player3 = DWPMPlayer()
+    conn = rpyc.connect("localhost",12345, config = {"allow_public_attrs" : True})
+    c = conn.root
 
-
-
+    game_service = RPYCPlayerService(c)
     rps = RPSGame.RPSGame()
-    #Set up tournament
-    c.root.set_game(rps)
-    c.root.set_display(Display())
+    display = Display()
+    player = CDJKPlayer()
 
-    #register 2 players
-    print("Registered player 1")
-    c.root.register_player(player)
-    print("Registered player 2")
-    c.root.register_player(player2)
-    c.root.register_player(player3)
 
-    print("Running Server")
-    c.root.run()
+    game_service.set_up_game(rps, display)
+    #register all players for testing
+    game_service.register_players(game_service.create_players())
+    game_service.run()
 
-    c.close()
+    conn.close()
 
-#    player_service = RPYCPlayerService(c,player)
-#    player_service.register_player()
 
 

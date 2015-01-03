@@ -124,19 +124,19 @@ class ScoreKeeper(object):
         print(len(self.leaderboard))
         print(player_list)
         print(score_list)
-
-        """
-        templeaderboard = player_list.copy()
-        tempscores = score_list.copy()
-        """ #TODO: above code caused errors
-
-        templeaderboard = player_list
-        tempscores = score_list
+        self.top_players(player_list, score_list)
 
 
-        #Sort the leaderboard by score and display top 3
-        print("The top three are:")
-        for i in range(0, 3):
-            print(templeaderboard[tempscores.index(max(tempscores))])
-            templeaderboard.remove(templeaderboard[tempscores.index(max(tempscores))])
-            tempscores.remove(tempscores[tempscores.index(max(tempscores))])
+    def top_players(self, player_list, score_list):
+        """display the top players"""
+        print("The top players are:")
+
+        if(player_list.size >= 3):
+            index = 3
+        else:
+            index = player_list.size
+
+        for i in range(0, index):
+            print(player_list[score_list.index(max(score_list))])
+            player_list.remove(player_list[score_list.index(max(score_list))])
+            score_list.remove(score_list[score_list.index(max(score_list))])

@@ -32,3 +32,7 @@ class TournamentServer():
     def run(self):
         """Run the current tournament setup"""
         self.tournament.run()
+
+    def reset(self):
+        """close the current tournament and start a new one"""
+        self.tournament = TournamentService()
