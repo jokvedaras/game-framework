@@ -14,7 +14,7 @@ class TournamentServer():
 
     def register_player(self, player):
         """Add a remote player to the tournament"""
-        self.tournament.addPlayer(player)
+        self.tournament.register_player(player)
 
     def set_game(self, game):
         """set the game of the current tournament"""
@@ -29,6 +29,6 @@ class TournamentServer():
         """set the current display type of the tournament"""
         self.tournament.set_display(display)
 
-    def run(self, password):
+    def run(self):
         """Run the current tournament setup"""
         self.tournament.run()

@@ -9,8 +9,6 @@ class ScoreKeeper(object):
     Consisting of two lists, will track all players and their scores
         as well as each match and their outcomes.
     """
-    leaderboard = []
-    matchhistory = []
 
     def __init__(self):
         self.leaderboard = []
@@ -126,6 +124,7 @@ class ScoreKeeper(object):
         print(len(self.leaderboard))
         print(player_list)
         print(score_list)
+
         """
         templeaderboard = player_list.copy()
         tempscores = score_list.copy()
@@ -134,6 +133,8 @@ class ScoreKeeper(object):
         templeaderboard = player_list
         tempscores = score_list
 
+
+        #Sort the leaderboard by score and display top 3
         print("The top three are:")
         for i in range(0, 3):
             print(templeaderboard[tempscores.index(max(tempscores))])

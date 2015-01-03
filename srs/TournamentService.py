@@ -41,6 +41,7 @@ class TournamentService:
             print("Can not run tournament. Tournament is null")
         else:
             self.tournament.set_game(self.game)
+            print("Tournament has now started")
             self.tournament.run()
 
 
