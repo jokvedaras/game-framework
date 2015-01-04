@@ -34,6 +34,10 @@ class Message(object):
         return Message.create_message(Message.Round_Start, players)
 
     @staticmethod
+    def get_tournament_end_message(players):
+        return Message.create_message(Message.Tournament_End, players)
+
+    @staticmethod
     def get_round_end_message(players, moves, result):
         # moves is a tuple. For eg. (2,1) means first player played scissors and the second played paper
         # result is 0 if tied, 1 if first player won and 2 if second player won

@@ -84,7 +84,8 @@ class Tournament(Observable.Observable):
 
     # Announces results of tournament to all players
     def end_tournament(self):
-        pass
+        message = Message.Message.get_tournament_end_message(players)
+        self.notify_all(message)
 
     # send a message containing a list of all the players in the current match
     def start_match(self, players):

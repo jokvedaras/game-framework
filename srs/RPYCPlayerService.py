@@ -54,6 +54,10 @@ class RPYCPlayerService:
         self.connection_root.set_game(game)
         self.connection_root.set_display(display)
 
+    def reset(self):
+        """reset tournament"""
+        self.connection_root.reset()
+
     def run(self):
         self.connection_root.run()
 
@@ -76,6 +80,8 @@ if __name__ == "__main__" :
     #register all players for testing
     game_service.register_players(game_service.create_players())
     game_service.run()
+
+    game_service.reset()
 
     conn.close()
 

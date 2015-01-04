@@ -131,7 +131,7 @@ class ScoreKeeper(object):
         """display the top players"""
         print("The top players are:")
 
-        if(player_list.size >= 3):
+        if len(player_list) >= 3:
             index = 3
         else:
             index = player_list.size
